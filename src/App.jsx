@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import TextInput from "./components/TextInput";
-import logo from "./logo.svg";
-import poweredBy from "./powered-by-vitawind-dark.png";
 
 function App() {
   const [terminalLog, setTerminalLog] = useState([]);
