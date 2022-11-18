@@ -24,11 +24,15 @@ function App() {
       if (value) {
         const commands = value.split(" ");
         switch (commands[0]) {
+          case "dir":
           case "ls": {
             if (commands.length === 1) {
               newEntry.push([
                 [
-                  ["secret", "text-indigo-700 font-semibold"],
+                  [
+                    "secret",
+                    commands[0] === "ls" ? "text-indigo-700 font-semibold" : "",
+                  ],
                   "github.txt",
                   "passwords.txt",
                 ],
@@ -42,12 +46,12 @@ function App() {
 
               if (commands[1] === "secret") {
                 newEntry.push(
-                  "ls: cannot open directory 'secret': Permission denied"
+                  `${commands[0]}: cannot open directory 'secret': Permission denied`
                 );
                 break;
               }
 
-              if (commands[1].charAt(0) === "-") {
+              if (commands[0] === "ls" && commands[1].charAt(0) === "-") {
                 if (commands[1] === "-l") {
                   /*
                   total 12
@@ -110,7 +114,7 @@ function App() {
               }
 
               newEntry.push(
-                `ls: cannot access '${commands[1]}': No such file or directory`
+                `${commands[0]}: cannot access '${commands[1]}': No such file or directory`
               );
             }
             break;
